@@ -1,0 +1,41 @@
+{
+  "settings": {
+    "analysis": {
+      "analyzer": {
+        "ik_syno": {
+          "type": "custom",
+          "tokenizer": "ik_max_word",
+          "filter": [
+            "drug_syno",
+            "exam_syno",
+            "illness_syno",
+            "oper_syno",
+            "test_syno"
+          ]
+        }
+      },
+      "filter": {
+        "drug_syno": {
+            "type": "synonym",
+            "synonyms_path": "analysis/drug.txt"
+          },
+          "exam_syno": {
+            "type": "synonym",
+            "synonyms_path": "analysis/exam.txt"
+          },
+          "illness_syno": {
+            "type": "synonym",
+            "synonyms_path": "analysis/illn.txt"
+          },
+          "oper_syno": {
+            "type": "synonym",
+            "synonyms_path": "analysis/oper.txt"
+          },
+          "test_syno": {
+            "type": "synonym",
+            "synonyms_path": "analysis/test.txt"
+          }
+      }
+    }
+  }
+}
