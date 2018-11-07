@@ -14,7 +14,7 @@ bindsym $mod+d exec rofi -show run
 bindsym $mod+Return exec i3-sensible-terminal
 
 # Kill focused window
-bindsym $mod+Shift+End kill
+bindsym $mod+Shift+m kill
 
 # change focus
 bindsym $mod+Left focus left
@@ -122,7 +122,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # i3-gaps config inner/outter gap
-gaps inner 10
+gaps inner 0
 gaps outer 5
 
 # run polybar 
