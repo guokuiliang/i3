@@ -5,22 +5,35 @@ set $mod Mod4
 new_window pixel
 
 # i3-gaps
-gaps inner 8
+gaps inner 6
 
 # Font for window titles.
-font pango: SauceCodePro Nerd Font Black 10
+font pango: SauceCodePro Nerd Font Black 12
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # Start a terminal
-bindsym $mod+Return exec urxvt
+bindsym $mod+Return exec i3-sensible-terminal
 
 # Kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+Shift+End kill
 
 # Start rofi
-bindsym $mod+d exec rofi -show drun
+bindsym $mod+d exec dmenu_run -fn "Monaco-14"
+
+
+bindsym $mod+p exec pcmanfm
+
+bindsym $mod+o exec google-chrome
+
+bindsym $mod+i exec idea
+
+bindsym $mod+u exec navicat
+
+bindsym $mod+y exec netease-cloud-music
+
+bindsym $mod+t exec code
 
 # launch categorized menu
 #bindsym $mod+z exec --no-startup-id morc_menu
@@ -92,6 +105,15 @@ bindsym $mod+6 workspace $workspace6
 bindsym $mod+7 workspace $workspace7
 bindsym $mod+8 workspace $workspace8
 
+workspace $workspace1 output VGA-1
+workspace $workspace2 output VGA-1
+workspace $workspace3 output VGA-1
+workspace $workspace4 output VGA-1
+workspace $workspace5 output VGA-1-2
+workspace $workspace6 output VGA-1-2
+workspace $workspace7 output VGA-1-2
+workspace $workspace8 output VGA-1-2
+
 # Move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $workspace1
 bindsym $mod+Shift+2 move container to workspace $workspace2
@@ -103,10 +125,6 @@ bindsym $mod+Shift+7 move container to workspace $workspace7
 bindsym $mod+Shift+8 move container to workspace $workspace8
 
 # Always open some programs on specified workspace
-assign [class="firefox"]    $workspace1
-assign [class="emacs"]	   	$workspace2
-assign [class="VirtualBox"]	$workspace5
-assign [class="cmus"]		    $workspace7
 
 # Reload the configuration file
 #bindsym $mod+Shift+c reload
@@ -115,7 +133,7 @@ assign [class="cmus"]		    $workspace7
 bindsym $mod+Shift+r restart
 
 # Exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m '你确定要退出i3吗？' -b 'Yes' 'i3-msg exit'"
 
 # Resize window (you can also use the mouse for that)
 mode "resize"
@@ -142,7 +160,7 @@ set $orange  #ff8700
 # RGBA
 set $cyan	   #4ec2f799
 set $acqua	 #00708999
-set $wine 	 #72003e99
+set $wine 	#72003e99
 set $magenta #af005f99
 set $silver  #e4e4e499
 set $toxic   #8EC00099
@@ -161,7 +179,7 @@ bar
 	position top
 	status_command i3blocks
   i3bar_command i3bar -t
-	font pango: SauceCodePro Nerd Font Black 10	
+	font pango: SauceCodePro Nerd Font Black 12
 	colors
 	{
                         # Border	# Background	# Text
@@ -172,34 +190,6 @@ bar
 		background          $elegant
     	}
 }
-
-# Set shut down, restart and locking features
-bindsym $mod+Shift+0 mode "$mode_system"
-set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
-mode "$mode_system" {
-    bindsym l exec --no-startup-id i3exit lock, mode "default"
-    bindsym s exec --no-startup-id i3exit suspend, mode "default"
-    bindsym u exec --no-startup-id i3exit switch_user, mode "default"
-    bindsym e exec --no-startup-id i3exit logout, mode "default"
-    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
-    bindsym r exec --no-startup-id i3exit reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
-
-    # exit system mode: "Enter" or "Escape"
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-
-# Lock screen
-bindsym $mod+Shift+9 exec --no-startup-id blurlock
-
 # Startup programs
 exec_always --no-startup-id feh --bg-scale ~/.wallpapers/cyberpunk.jpg # Wallpaper
-exec_always --no-startup-id ~/.monitor.sh # Automatically switch within monitors
-#exec --no-startup-id g213-led -fx hwave keys 0a # Set the keyboard colours
-#exec --no-startup-id setxkbmap latam # Set the keyboard layout
-#exec --no-startup-id xbindkeys # Load keyboard shortcuts
-exec --no-startup-id compton -f # Compositor for window transparency
-exec --no-startup-id emacs --daemon=instance1 # Daemonize Emacs
-exec --no-startup-id xfce4-power-manager # To monitor batttery
 exec --no-startup-id notify-send "Welcome back Quinn!" -i ~/.happy.png # Greeting on startup
