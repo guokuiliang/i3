@@ -2,7 +2,7 @@
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
-font pango:ttf-liberation-mono 16 
+font pango:ttf-liberation-mono 12 
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -15,12 +15,6 @@ bindsym $mod+Return exec i3-sensible-terminal
 
 # Kill focused window
 bindsym $mod+Shift+m kill
-
-# change focus
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
 
 #  for screen lock
 bindsym $mod+Shift+l exec i3lock-fancy
@@ -35,6 +29,18 @@ bindsym XF86AudioMute exec amixer set Master toggle
 # Screen brightness controls use backlight
 bindsym XF86MonBrightnessUp exec backlight +5 # increase screen brightness
 bindsym XF86MonBrightnessDown exec backlight -5 # decrease screen brightness
+
+# Alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
@@ -55,7 +61,7 @@ set $ws5 "5:  "
 set $ws6 "6:  "
 set $ws7 "7:  "
 set $ws8 "8:  "
-set $ws9 "8:  "
+set $ws9 "9:  "
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -122,11 +128,13 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # i3-gaps config inner/outter gap
-gaps inner 0
-gaps outer 5
+gaps inner 6
+gaps outer 0
 
 # run polybar 
 exec_always --no-startup-id sh /home/quinn/.config/polybar/launch.sh
 exec_always --no-startup-id feh --bg-scale ~/.wall/wallpaper.jpg
 exec --no-startup-id compton -b & 
+exec --no-startup-id fcitx & 
 exec --no-startup-id notify-send "Welcome back Quinn!" -i ~/.wall/happy.png
+exec --no-startup-id xrandr --output VIRTUAL1 --off --output eDP1 --mode 2560x1600 --pos 0x0 --rotate normal --output DP1 --mode 1920x1080 --pos 2560x0 --rotate normal --output HDMI2 --off --output HDMI1 --off --output DP2 --mode 1920x1080 --pos 4480x0 --rotate normal
